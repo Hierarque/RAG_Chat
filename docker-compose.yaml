@@ -30,6 +30,7 @@ services:
         - host.docker.internal:host-gateway
       restart: unless-stopped
   rag:
-      image: python
+      build:
+        context: ./rag
       container_name: RAG
       tty: true
