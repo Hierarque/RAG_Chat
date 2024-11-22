@@ -37,6 +37,10 @@ services:
         context: ./rag
         dockerfile: Dockerfile
       container_name: RAG
+      volumes:
+        - ./python_cache:/app/.cache
       environment:
         - PDF_URL=your_url 
+        - PYTHONUSERBASE=/app/.cache
+      command: python main.py
       tty: true

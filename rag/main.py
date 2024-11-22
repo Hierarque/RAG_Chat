@@ -2,7 +2,7 @@ import os
 import upload
 
 def main(url):
-    doc_name = upload.get_doc_from_url(url)
+    doc_name = upload.get_doc_from_URL(url)
     try:
         if doc_name.endswith(".pdf"):
             upload.convert_pdf_to_text(doc_name)
