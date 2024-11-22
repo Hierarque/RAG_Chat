@@ -1,3 +1,4 @@
 .llms/*
 open-webUI/*
+!open-webUI/Dockerfile
 rag/vault.txt
