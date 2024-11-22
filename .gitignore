@@ -2,3 +2,4 @@
 open-webUI/*
 !open-webUI/Dockerfile
 !open-webUI/backend
+rag/python_cache/*
