@@ -2,4 +2,3 @@
 open-webUI/*
 !open-webUI/Dockerfile
 !open-webUI/backend
-rag/vault.txt
