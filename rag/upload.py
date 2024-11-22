@@ -1,6 +1,14 @@
-import os
 import PyPDF2
 import re
+import requests
+
+
+def get_doc_from_URL(url):
+    doc = requests.get(url, stream=True, verify=False)
+    doc_name = url.split('/')[-1]
+    with open(doc_name, "wb") as f:
+        f.write(doc.content)
+    return doc_name
 
 # Function to convert PDF to text and append to vault.txt
 def convert_pdf_to_text():

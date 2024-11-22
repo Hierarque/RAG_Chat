@@ -33,4 +33,6 @@ services:
       build:
         context: ./rag
       container_name: RAG
+      environment:
+        - PDF_URL=your_url 
       tty: true
