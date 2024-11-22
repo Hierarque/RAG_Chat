@@ -34,8 +34,8 @@ services:
   #     restart: unless-stopped
   rag:
       build:
-        context: .
-        dockerfile: ./rag/Dockerfile
+        context: ./rag
+        dockerfile: Dockerfile
       container_name: RAG
       environment:
         - PDF_URL=your_url 
