@@ -1,5 +1,8 @@
 services:
   ollama:
+    build:
+      context: .
+      dockerfile: ./ollama/Dockerfile
     image: ollama
     container_name: ollama
     ports:
@@ -9,29 +12,30 @@ services:
     stdin_open: true
     tty: true
 
-  open-webui:
-      build:
-        context: .
-        args:
-          OLLAMA_BASE_URL: '/ollama'
-        dockerfile: Dockerfile
-      image: ghcr.io/open-webui/open-webui:${WEBUI_DOCKER_TAG-main}
-      container_name: open-webui
-      volumes:
-        - ./open-webUI:/app/backend/data
-      depends_on:
-        - ollama
-      ports:
-        - ${OPEN_WEBUI_PORT-3000}:8080
-      environment:
-        - 'OLLAMA_BASE_URL=http://ollama:11434'
-        - 'WEBUI_SECRET_KEY='
-      extra_hosts:
-        - host.docker.internal:host-gateway
-      restart: unless-stopped
+  # open-webui:
+  #     build:
+  #       context: .
+  #       args:
+  #         OLLAMA_BASE_URL: '/ollama'
+  #       dockerfile: ./open-webUI/Dockerfile
+  #     image: ghcr.io/open-webui/open-webui:${WEBUI_DOCKER_TAG-main}
+  #     container_name: open-webui
+  #     volumes:
+  #       - ./open-webUI:/app/backend/data
+  #     depends_on:
+  #       - ollama
+  #     ports:
+  #       - ${OPEN_WEBUI_PORT-3000}:8080
+  #     environment:
+  #       - 'OLLAMA_BASE_URL=http://ollama:11434'
+  #       - 'WEBUI_SECRET_KEY='
+  #     extra_hosts:
+  #       - host.docker.internal:host-gateway
+  #     restart: unless-stopped
   rag:
       build:
-        context: ./rag
+        context: .
+        dockerfile: ./rag/Dockerfile
       container_name: RAG
       environment:
         - PDF_URL=your_url 
